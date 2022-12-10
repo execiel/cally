@@ -1,9 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
+import { getDay, getDaysInMonth, getMonthName } from "./Util";
+import { MonthView } from "./components/MonthView";
+import { colors } from "./MainStyle";
 
 export default function App() {
+  // Current month and date
+  const currentDate: Date = new Date();
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <MonthView
+        daysInMonth={getDaysInMonth(currentDate)}
+        currentDay={getDay(currentDate)}
+      />
     </View>
   );
 }
@@ -11,8 +20,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: colors.background,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
