@@ -2,12 +2,6 @@
 //  Utility functions  //
 /////////////////////////
 
-// Interfaces
-interface Day {
-  name: string;
-  date: number;
-}
-
 // Day and month names
 const weekdayNames = [
   "Sunday",
@@ -45,24 +39,19 @@ function getMonthName(date: Date): string {
 }
 
 // Returns days in month from date
-function getDaysInMonth(date: Date) {
+function getDatesInMonth(date: Date) {
   const amountOfDays = new Date(
     date.getFullYear(),
-    date.getMonth() + 1,
+    date.getMonth()+1,
     0
   ).getDate();
 
-  const days = [];
+  const dates = [];
   for (let i = 1; i <= amountOfDays; i++) {
-    days.push(getDay(new Date(date.getFullYear(), date.getMonth() + 1, i)));
+    dates.push(new Date(date.getFullYear(), date.getMonth(), i));
   }
 
-  return days;
+  return dates;
 }
 
-// Returns day type from date
-function getDay(date: Date): Day {
-  return { name: getWeekdayName(date), date: date.getDate() };
-}
-
-export { getDaysInMonth, getMonthName, Day, getDay };
+export { getDatesInMonth, getWeekdayName, getMonthName };

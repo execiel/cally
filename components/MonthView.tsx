@@ -1,17 +1,18 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { mainStyle, colors } from "../MainStyle";
+// import { getWeekdayName } from "../Util";
 
-function DayPressable({ selected, day, changeDay }) {
+function DayPressable({ selected, date, changeDate }) {
   return selected ? (
     <TouchableOpacity
       style={{
         ...styles.dayPressable,
         backgroundColor: colors.highlight,
       }}
-      onPress={() => changeDay(day)}
+      onPress={() => changeDate(date)}
     >
-      <Text style={mainStyle.textHighlighted}>{day.date}</Text>
+      <Text style={mainStyle.textHighlighted}>{date.getDate()}</Text>
     </TouchableOpacity>
   ) : (
     <TouchableOpacity
@@ -19,32 +20,29 @@ function DayPressable({ selected, day, changeDay }) {
         ...styles.dayPressable,
         backgroundColor: colors.backgroundLighter,
       }}
-      onPress={() => changeDay(day)}
+      onPress={() => changeDate(date)}
     >
-      <Text style={mainStyle.text}>{day.date}</Text>
+      <Text style={mainStyle.text}>{date.getDate()}</Text>
     </TouchableOpacity>
   );
 }
 
-export function MonthView({ daysInMonth, currentDay }) {
-  const [selectedDay, setSelectedDay] = useState(currentDay);
-  const changeDay = (day) => setSelectedDay(day);
-
+export function MonthView({ datesInMonth, currentDate, changeDate }) {
   return (
     <View style={{ ...mainStyle.innerContainer, ...styles.viewContainer }}>
-      {daysInMonth.map((day, key) => {
-        return selectedDay == day ? (
+      {datesInMonth.map((date: Date, key: number) => {
+        return currentDate.getDate() == date.getDate() ? (
           <DayPressable
             selected={true}
-            day={day}
-            changeDay={changeDay}
+            date={date}
+            changeDate={changeDate}
             key={key}
           />
         ) : (
           <DayPressable
             selected={false}
-            day={day}
-            changeDay={changeDay}
+            date={date}
+            changeDate={changeDate}
             key={key}
           />
         );
@@ -64,9 +62,9 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    shadowColor: "#ff0000",
   },
   viewContainer: {
-    display: "flex",
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-evenly",

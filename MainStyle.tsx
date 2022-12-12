@@ -19,6 +19,7 @@ const mainStyle = StyleSheet.create({
   innerContainer: {
     padding: 20,
     borderRadius: 10,
+    marginBottom: 20,
   },
   text: {
     fontSize: 15,
