@@ -42,7 +42,7 @@ function getMonthName(date: Date): string {
 function getDatesInMonth(date: Date) {
   const amountOfDays = new Date(
     date.getFullYear(),
-    date.getMonth()+1,
+    date.getMonth() + 1,
     0
   ).getDate();
 
