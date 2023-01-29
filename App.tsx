@@ -1,17 +1,9 @@
-import {
-  StyleSheet,
-  Animated,
-  StatusBar,
-  Text,
-  View,
-  Dimensions,
-} from "react-native";
-import { getDatesInMonth, getMonthName } from "./Util";
-import { MonthView } from "./components/MonthView";
+import { StyleSheet, StatusBar, View } from "react-native";
 import { Header } from "./components/Header";
 import { colors } from "./MainStyle";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import SwipableView from "./components/SwipableView";
+import { holidays } from "./Util";
 
 export default function App() {
   // Current month and date

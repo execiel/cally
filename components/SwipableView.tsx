@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Animated, Dimensions } from "react-native";
 import { MonthView } from "./MonthView";
 import { getDatesInMonth } from "../Util";
@@ -9,11 +9,13 @@ export default function SwipableView({ setCurrentDate, currentDate }) {
 
   // Moves after swipes and becomes transparent
   // Then moves to opposite side and moves back, becoming opaque
+  // TODO: find a cleaner way of doing this
   const animateSwipe = (direction: string) => {
     let windowWidth = Dimensions.get("window").width;
 
     direction == "left" && (windowWidth = -windowWidth);
 
+    // Fade and swipe out
     Animated.timing(transformAnim, {
       toValue: windowWidth,
       duration: 200,
@@ -25,18 +27,24 @@ export default function SwipableView({ setCurrentDate, currentDate }) {
       useNativeDriver: true,
     }).start();
 
-    setTimeout(() => {
+    // Wait for first animation to finish
+    const timeOut = setTimeout(() => {
+      // Place on oposite side of screen
       transformAnim.setValue(-windowWidth);
-      setCurrentDate(
-        new Date(
-          currentDate.getFullYear(),
-          direction == "left"
-            ? currentDate.getMonth() + 1
-            : currentDate.getMonth() - 1,
-          1
-        )
+
+      // Determin date from direction of swipe
+      const newDate = new Date(
+        currentDate.getFullYear(),
+        direction == "left"
+          ? currentDate.getMonth() + 1
+          : currentDate.getMonth() - 1,
+        1
       );
 
+      // Change the date before next animation
+      setCurrentDate(newDate);
+
+      // Fade and swipe in
       Animated.timing(transformAnim, {
         toValue: 0,
         duration: 200,
@@ -48,6 +56,8 @@ export default function SwipableView({ setCurrentDate, currentDate }) {
         duration: 200,
         useNativeDriver: true,
       }).start();
+
+      clearTimeout(timeOut);
     }, 200);
   };
 

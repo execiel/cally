@@ -2,6 +2,11 @@
 //  Utility functions  //
 /////////////////////////
 
+const holidays = {
+  "3,0": "Christmas Eve",
+  "15,0": "Christmas Day",
+};
+
 // Day and month names
 const weekdayNames = [
   "Sunday",
@@ -54,4 +59,4 @@ function getDatesInMonth(date: Date) {
   return dates;
 }
 
-export { getDatesInMonth, getWeekdayName, getMonthName };
+export { holidays, getDatesInMonth, getWeekdayName, getMonthName };

@@ -1,28 +1,29 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { mainStyle, colors } from "../MainStyle";
-// import { getWeekdayName } from "../Util";
+import { holidays } from "../Util";
 
 function DayPressable({ selected, date, changeDate }) {
-  return selected ? (
-    <TouchableOpacity
-      style={{
+  // const holiday = holidays[`${date.getDate()}, ${date.getMonth()}`];
+  // console.log(holiday);
+  // console.log(holidays["15,0"]);
+
+  const day: number = date.getMonth();
+  const month: number = date.getDay();
+  console.log(holidays[day+","+month]);
+  const style = selected
+    ? {
         ...styles.dayPressable,
         backgroundColor: colors.highlight,
-      }}
-      onPress={() => changeDate(date)}
-    >
-      <Text style={mainStyle.textHighlighted}>{date.getDate()}</Text>
-    </TouchableOpacity>
-  ) : (
-    <TouchableOpacity
-      style={{
+      }
+    : {
         ...styles.dayPressable,
         backgroundColor: colors.backgroundLighter,
-      }}
-      onPress={() => changeDate(date)}
-    >
-      <Text style={mainStyle.text}>{date.getDate()}</Text>
+      };
+
+  return (
+    <TouchableOpacity style={style} onPress={() => changeDate(date)}>
+      <Text style={mainStyle.textHighlighted}>{date.getDate()}</Text>
     </TouchableOpacity>
   );
 }
