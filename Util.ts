@@ -3,8 +3,31 @@
 /////////////////////////
 
 const holidays = {
-  "3,0": "Christmas Eve",
-  "15,0": "Christmas Day",
+  January: { 1: "New Year's Day", 6: "Epiphany" },
+  February: { 14: "Valentines Day" },
+  March: { 8: "International Women's Day", 14: `${Math.PI} Day` },
+  April: {
+    6: "Maundy Thursday",
+    7: "Good Friday",
+    8: "Holy Saturday",
+    9: "Easter",
+    10: "Easter Monday",
+    30: "Walpurgis Night",
+  },
+  May: { 1: "International Workers' Day", 28: "Mother's Day" },
+  June: { 23: "Midsummer Eve", 24: "Midsummer Day" },
+  July: {},
+  August: {},
+  September: {},
+  October: { 31: "Halloween" },
+  November: { 4: "All Hallows Day" },
+  December: {
+    13: "Saint Lucy's Day",
+    24: "Christmas Eve",
+    25: "Christmas Day",
+    26: "Boxing Day",
+    31: "New Years Eve",
+  },
 };
 
 // Day and month names
@@ -20,7 +43,7 @@ const weekdayNames = [
 
 const monthNames = [
   "January",
-  "Febuary",
+  "February",
   "March",
   "April",
   "May",

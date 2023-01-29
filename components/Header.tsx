@@ -1,9 +1,11 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { mainStyle, colors } from "../MainStyle";
-import { getMonthName, getWeekdayName } from "../Util";
+import { getMonthName, getWeekdayName, holidays } from "../Util";
 
 export function Header({ date }) {
+  const holiday: string = holidays[getMonthName(date)][date.getDate()];
+
   return (
     <View style={{ ...mainStyle.innerContainer, ...styles.mainContainer }}>
       <View style={styles.inner}>
@@ -14,6 +16,11 @@ export function Header({ date }) {
         <Text style={mainStyle.headerSmall}>{getMonthName(date)} </Text>
         <Text style={mainStyle.headerSmall}>{date.getFullYear()}</Text>
       </View>
+      {holiday && (
+        <View>
+          <Text style={styles.holidayText}>{holiday}</Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -31,5 +38,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
+  },
+  holidayText: {
+    fontSize: 18,
+    fontStyle: "italic",
+    color: colors.highlightAlt,
   },
 });

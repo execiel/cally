@@ -6,7 +6,7 @@ const darkColors = {
   backgroundLighter: "#4C566A",
   backgroundDarker: "#2E3440",
   highlight: "#B48EAD",
-  highlightAlt: "#BF616A",
+  highlightAlt: "#81a1c1",
   textHighlight: "#FAFAFA",
   text: "#DAE5FF",
   textDimmed: "#B8C1D7",
