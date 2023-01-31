@@ -48,6 +48,43 @@ const mainStyle = StyleSheet.create({
     fontWeight: "bold",
     color: colors.text,
   },
+  underHeader: {
+    fontSize: 18,
+    fontStyle: "italic",
+    color: colors.highlightAlt,
+  },
+  input: {
+    height: 45,
+    width: 250,
+    margin: 12,
+    backgroundColor: colors.backgroundLighter,
+    borderRadius: 10,
+    fontSize: 15,
+    color: colors.text,
+    padding: 15,
+  },
+  button: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: 50,
+    margin: 10,
+    padding: 15,
+    width: 250,
+    backgroundColor: colors.highlight,
+    borderRadius: 10,
+  },
+  buttonText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    textColor: colors.backgroundDarker,
+  },
+  screenContainer: {
+    flex: 1,
+    backgroundColor: colors.background,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
 
 export { mainStyle, colors };

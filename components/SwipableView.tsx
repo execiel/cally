@@ -3,7 +3,11 @@ import { Animated, Dimensions } from "react-native";
 import { MonthView } from "./MonthView";
 import { getDatesInMonth } from "../Util";
 
-export default function SwipableView({ setCurrentDate, currentDate }) {
+export default function SwipableView({
+  setCurrentDate,
+  currentDate,
+  innerComponent,
+}) {
   const transformAnim = useRef(new Animated.Value(0)).current;
   const opacityAnim = useRef(new Animated.Value(1)).current;
 
@@ -79,11 +83,7 @@ export default function SwipableView({ setCurrentDate, currentDate }) {
         e.nativeEvent.pageX - this.touchX > 20 && animateSwipe("right");
       }}
     >
-      <MonthView
-        datesInMonth={getDatesInMonth(currentDate)}
-        currentDate={currentDate}
-        changeDate={setCurrentDate}
-      />
+      {innerComponent}
     </Animated.View>
   );
 }

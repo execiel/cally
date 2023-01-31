@@ -18,7 +18,7 @@ export function Header({ date }) {
       </View>
       {holiday && (
         <View>
-          <Text style={styles.holidayText}>{holiday}</Text>
+          <Text style={mainStyle.underHeader}>{holiday}</Text>
         </View>
       )}
     </View>
@@ -38,10 +38,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
-  },
-  holidayText: {
-    fontSize: 18,
-    fontStyle: "italic",
-    color: colors.highlightAlt,
   },
 });

@@ -1,28 +1,34 @@
-import { StyleSheet, StatusBar, View } from "react-native";
-import { Header } from "./components/Header";
-import { colors } from "./MainStyle";
+import Main from "./screens/MainScreen";
+import Login from "./screens/LoginScreen";
+import Register from "./screens/RegisterScreen";
 import { useState } from "react";
-import SwipableView from "./components/SwipableView";
-import { holidays } from "./Util";
 
 export default function App() {
-  // Current month and date
-  const [currentDate, setCurrentDate] = useState(new Date());
+  // Theres only three different "screens"
+  // login, register and (mainscreen which contains a few modals)
+  const [currentScreen, setCurrentScreen] = useState("");
 
-  return (
-    <View style={styles.container}>
-      <Header date={currentDate} />
-      <SwipableView setCurrentDate={setCurrentDate} currentDate={currentDate} />
-      <StatusBar backgroundColor={colors.backgroundLighter} />
-    </View>
-  );
+  switch (currentScreen) {
+    case "register":
+      return (
+        <Register
+          currentScreen={currentScreen}
+          setCurrentScreen={setCurrentScreen}
+        />
+      );
+    case "main":
+      return (
+        <Main
+          currentScreen={currentScreen}
+          setCurrentScreen={setCurrentScreen}
+        />
+      );
+    default:
+      return (
+        <Login
+          currentScreen={currentScreen}
+          setCurrentScreen={setCurrentScreen}
+        />
+      );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
